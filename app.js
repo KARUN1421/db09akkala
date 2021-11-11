@@ -9,6 +9,8 @@ var usersRouter = require('./routes/users');
 var animalRouter = require('./routes/animal');
 var addmodsRouter = require('./routes/addmods');
 var selectorRouter = require('./routes/selector');
+var Animal = require("./models/animal");
+var resourceRouter = require('./routes/resource');
 
 var app = express();
 
@@ -27,6 +29,7 @@ app.use('/users', usersRouter);
 app.use('/animal', animalRouter);
 app.use('/addmods', addmodsRouter);
 app.use('/selector', selectorRouter);
+app.use('/resource', resourceRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -44,4 +47,33 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-module.exports = app;
+
+const connectionString = process.env.MONGO_CON
+
+mongoose = require('mongoose');
+mongoose.connect(connectionString, {useNewUrlParser: true, useUnifiedTopology: true});
+
+// We can seed the collection if needed on server start
+async function recreateDB(){
+  // Delete everything
+  await Animal.deleteMany();
+ 
+ 
+  var results = [{"name":"lion", "type":"wild","age":12},
+                 {"name":"cat","type":"pet","age":3},
+                 {"name":"shark","type":"water wild","age":18}]
+ 
+ for(i in results){
+  let instance = new Animal({name: results[i]["name"], type: results[i]["type"], age:results[i]["age"]});
+   instance.save( function(err,doc) {
+     if(err) return console.error(err);
+     console.log("object added.")
+     });
+ }
+ 
+ }
+ 
+ let reseed = true;
+ if (reseed) { recreateDB();}
+
+ module.exports = app;
