@@ -3,5 +3,5 @@ const animal_controlers= require('../controllers/animal');
 var router = express.Router(); 
  
 /* GET costumes */ 
-router.get('/', animal_controlers.animal_view_all_Page ); 
+router.put('/animal/:id', animal_controlers.animal_update_put); 
 module.exports = router; 
