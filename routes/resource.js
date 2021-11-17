@@ -21,7 +21,9 @@ router.get('/animal/:id', animal_controller.animal_detail);
 router.get('/animal', animal_controller.animal_list);
 /* GET detail animal page */
 
-/* GET detail plant page */ 
+/* GET detail animal page */ 
 router.get('/detail', animal_controller.animal_view_one_Page); 
+
+router.get('/create', animal_controller.animal_create_Page);
 
 module.exports = router;
