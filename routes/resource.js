@@ -11,7 +11,7 @@ router.get('/', api_controller.api);
 // POST request for creating a animal.
 router.post('/animal', animal_controller.animal_create_post);
 // DELETE request to delete animal.
-router.delete('/animals/:id', animal_controller.animal_delete);
+router.delete('/animal/:id', animal_controller.animal_delete);
 // PUT request to update animal.
 router.put('/animal/:id', animal_controller.animal_update_put);
 // GET request for one animal.

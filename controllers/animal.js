@@ -76,6 +76,14 @@ failed`);
 }; 
  
 // Handle Costume delete form on DELETE. 
-exports.animal_delete = function(req, res) { 
-    res.send('NOT IMPLEMENTED: Animal delete DELETE ' + req.params.id); 
-};
+exports.animal_delete = async function(req, res) { 
+    console.log("delete "  + req.params.id) 
+    try { 
+        result = await animals.findByIdAndDelete( req.params.id) 
+        console.log("Removed " + result) 
+        res.send(result) 
+    } catch (err) { 
+        res.status(500) 
+        res.send(`{"error": Error deleting ${err}}`); 
+    } 
+}; 
