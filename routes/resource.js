@@ -4,6 +4,7 @@ var router = express.Router();
 // Require controller modules
 var api_controller = require('../controllers/api');
 var animal_controller = require('../controllers/animal');
+
 /// API ROUTE ///
 // GET resources base.
 router.get('/', api_controller.api);
@@ -19,5 +20,8 @@ router.get('/animal/:id', animal_controller.animal_detail);
 // GET request for list of all animal items.
 router.get('/animal', animal_controller.animal_list);
 /* GET detail animal page */
+
+/* GET detail plant page */ 
+router.get('/detail', animal_controller.animal_view_one_Page); 
 
 module.exports = router;

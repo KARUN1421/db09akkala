@@ -1,7 +1,7 @@
 var express = require('express'); 
-const animal_controlers= require('../controllers/animal'); 
+const animal_controller = require('../controllers/animal'); 
 var router = express.Router(); 
  
 /* GET costumes */ 
-router.delete('/animal/:id', animal_controlers.animal_delete); 
+router.get('/detail', animal_controller.animal_view_one_Page); 
 module.exports = router; 
