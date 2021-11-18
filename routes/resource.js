@@ -28,4 +28,6 @@ router.get('/create', animal_controller.animal_create_Page);
 
 router.get('/update', animal_controller.animal_update_Page);
 
+router.get('/delete', animal_controller.animal_delete_Page);
+
 module.exports = router;
