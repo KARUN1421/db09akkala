@@ -1,0 +1,43 @@
+extends layout
+
+block content
+  h1= title
+
+  - let animalid = toShow._id
+  - let type = toShow.type
+  - let name = toShow.name
+  - let age = toShow.age
+
+  div.row(class='mb-2')
+  div.mr-1 ID is
+  div #{animalid}
+  - let actionid = "/resource/animal/" + animalid
+  form(id='AnimalForm',  action= actionid, method="PUT")
+    div.form-group
+        label.animalAttr(for='type') Animal Type
+        input#type(type='text', name='type', value=type)
+    div.form-group
+        label.animalAttr(for='name') Animal Name
+        input#name(type='text', name='name', value=name)
+    div.form-group
+        label.animalAttr(for='age') Animal Age
+        input#age(type='number', name='age', value=age)
+    input.button(type="submit")
+
+  script. 
+    document.forms['AnimalForm'].addEventListener('submit', (event) => { 
+      event.preventDefault(); 
+      // TODO do something here to show user that form is being submitted 
+      fetch(event.target.action, { 
+        method: 'POST', 
+        body: new URLSearchParams(new FormData(event.target)) // event.target is the form 
+      }).then((resp) => { 
+        return resp.text(); // or resp.text() or whatever the server sends 
+      }).then((body) => { 
+        alert("Save succeded") 
+        // TODO handle body 
+      }).catch((error) => { 
+        // TODO handle error 
+        alert("Save failed " + error ) 
+      }); 
+    }); 
