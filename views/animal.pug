@@ -4,14 +4,12 @@ block content
   h1= title
   - var results = results
   div(class="container-fuild")
-    div(class="row")
+    div(class="row m-1")
       each result,index in results
-        div(class = "col-sm-2" id=index onclick=`buy(${index})`) 
-          p #{result.name}
-          p #{result.type}
-          p #{result.age}
-
-  script.
-    function buy(element){
-      alert(`You purchased item ${element+1}.`)
+         - let destination = `dispatch(\"/animal/update?id=${result._id}\")`
+         div(class="col-sm-4")  #{result.type} - #{result.name} - #{result.cost}
+           button.btn( class="btn-primary" class="btn-toolbar", onclick= destination) Update
+  script. 
+    function dispatch(path){ 
+      window.location.href=path 
     }
