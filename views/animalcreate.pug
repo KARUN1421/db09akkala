@@ -12,7 +12,7 @@ block content
         input#name(type='text', name='name')
     div.form-group
         label.animalAttr(for='age') Animal Age
-        input#age(type='number', name='age')
+        input#age(type='number', name='age' min=0, max=50)
     input.button(type="submit")
 
   script. 
@@ -25,7 +25,7 @@ block content
       }).then((resp) => { 
         return resp.text(); // or resp.text() or whatever the server sends 
       }).then((body) => { 
-        alert("Save succeded") 
+        alert("Animal cost should be minimum of $55") 
         // TODO handle body 
       }).catch((error) => { 
         // TODO handle error 

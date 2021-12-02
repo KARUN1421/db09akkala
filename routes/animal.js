@@ -13,5 +13,6 @@ const secured = (req, res, next) => {
     res.redirect("/login");
   }
 router.get('/update', secured, animal_controller.animal_update_Page);
+router.get('/create', secured, animal_controller.animal_create_Page);
 
 module.exports = router; 
